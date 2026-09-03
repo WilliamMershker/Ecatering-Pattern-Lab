@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<StackPane fx:id="primaryRoot" minHeight="640.0" minWidth="980.0"
+           prefHeight="760.0" prefWidth="1200.0" styleClass="primary-root"
+           xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="vn.edu.patterrnsdemo.PrimaryController">
+   <children>
+
+      <VBox styleClass="root-container">
+         <children>
+
+            <Region styleClass="top-accent-strip" />
+
+            <!-- Application identity and live metrics -->
+            <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="header-bar">
+               <children>
+                  <StackPane styleClass="logo-mark">
+                     <children>
+                        <Label styleClass="logo-mark-text" text="DP" />
+                     </children>
+                  </StackPane>
+
+                  <VBox spacing="1.0">
+                     <children>
+                        <Label styleClass="header-title" text="E-CATERING SYSTEM" />
+                        <Label styleClass="header-subtitle" text="Design Pattern Intelligence Lab" />
+                     </children>
+                  </VBox>
+
+                  <Region HBox.hgrow="ALWAYS" />
+
+                  <HBox alignment="CENTER" spacing="9.0" styleClass="header-metrics">
+                     <children>
+                        <VBox alignment="CENTER" spacing="0.0" styleClass="header-metric">
+                           <children>
+                              <Label fx:id="totalPatternLabel" styleClass="metric-value" text="23" />
+                              <Label styleClass="metric-label" text="PATTERNS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="0.0" styleClass="header-metric">
+                           <children>
+                              <Label styleClass="metric-value" text="03" />
+                              <Label styleClass="metric-label" text="FAMILIES" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <StackPane styleClass="header-status">
+                     <children>
+                        <HBox alignment="CENTER" spacing="7.0">
+                           <children>
+                              <Region fx:id="onlinePulseDot" styleClass="pulse-dot" />
+                              <Label styleClass="header-status-text" text="SYSTEM ONLINE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets bottom="13.0" left="24.0" right="24.0" top="13.0" />
+               </padding>
+            </HBox>
+
+            <!-- Main application workspace -->
+            <SplitPane dividerPositions="0.295" styleClass="main-split" VBox.vgrow="ALWAYS">
+               <items>
+
+                  <!-- Pattern navigator -->
+                  <AnchorPane minWidth="275.0" styleClass="sidebar-pane">
+                     <children>
+                        <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT" spacing="3.0">
+                                       <children>
+                                          <Region styleClass="icon-bar, icon-bar-1" />
+                                          <Region styleClass="icon-bar, icon-bar-2" />
+                                          <Region styleClass="icon-bar, icon-bar-3" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="1.0">
+                                       <children>
+                                          <Label styleClass="sidebar-title" text="PATTERN NAVIGATOR" />
+                                          <Label styleClass="sidebar-caption" text="Tìm, lọc và kiểm thử mẫu" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <StackPane styleClass="count-chip">
+                                       <children>
+                                          <Label fx:id="visiblePatternCountLabel"
+                                                 styleClass="count-chip-text" text="23" />
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+
+                              <Region styleClass="sidebar-divider" />
+
+                              <HBox alignment="CENTER_LEFT" spacing="7.0" styleClass="search-shell">
+                                 <children>
+                                    <Label styleClass="search-icon" text="⌕" />
+                                    <TextField fx:id="searchField" promptText="Tìm Design Pattern..."
+                                               styleClass="pattern-search" HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#handleClearSearch"
+                                            styleClass="search-clear-button" text="×" />
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER" spacing="5.0" styleClass="filter-row">
+                                 <children>
+                                    <ToggleButton fx:id="allFilterButton" mnemonicParsing="false"
+                                                  onAction="#showAllPatterns" selected="true"
+                                                  styleClass="filter-button" text="TẤT CẢ" />
+                                    <ToggleButton fx:id="creationalFilterButton" mnemonicParsing="false"
+                                                  onAction="#showCreationalPatterns"
+                                                  styleClass="filter-button, filter-creational"
+                                                  text="KHỞI TẠO" />
+                                    <ToggleButton fx:id="structuralFilterButton" mnemonicParsing="false"
+                                                  onAction="#showStructuralPatterns"
+                                                  styleClass="filter-button, filter-structural"
+                                                  text="CẤU TRÚC" />
+                                    <ToggleButton fx:id="behavioralFilterButton" mnemonicParsing="false"
+                                                  onAction="#showBehavioralPatterns"
+                                                  styleClass="filter-button, filter-behavioral"
+                                                  text="HÀNH VI" />
+                                 </children>
+                              </HBox>
+
+                              <ListView fx:id="patternListView" styleClass="pattern-list"
+                                        VBox.vgrow="ALWAYS" />
+
+                              <VBox spacing="7.0" styleClass="category-legend">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label styleClass="legend-title" text="PATTERN FAMILIES" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="legend-caption" text="GoF · 23" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="legend-row">
+                                       <children>
+                                          <Region styleClass="legend-dot, legend-dot-creational" />
+                                          <Label styleClass="legend-label" text="Khởi tạo" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="legend-code" text="05 · CREATIONAL" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="legend-row">
+                                       <children>
+                                          <Region styleClass="legend-dot, legend-dot-structural" />
+                                          <Label styleClass="legend-label" text="Cấu trúc" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="legend-code" text="07 · STRUCTURAL" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="legend-row">
+                                       <children>
+                                          <Region styleClass="legend-dot, legend-dot-behavioral" />
+                                          <Label styleClass="legend-label" text="Hành vi" />
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label styleClass="legend-code" text="11 · BEHAVIORAL" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="14.0" left="16.0" right="16.0" top="16.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+
+                  <!-- Dynamic execution workspace -->
+                  <AnchorPane minWidth="620.0" styleClass="content-pane">
+                     <children>
+                        <VBox spacing="12.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                           <children>
+
+                              <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="hero-panel">
+                                 <children>
+                                    <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label fx:id="workspaceEyebrow" styleClass="eyebrow"
+                                                 text="CREATIONAL • DESIGN PATTERN 01/23" />
+                                          <Label fx:id="workspaceTitle" styleClass="workspace-title"
+                                                 text="Singleton" />
+                                          <Label fx:id="workspaceSubtitle" maxWidth="580.0"
+                                                 styleClass="workspace-subtitle"
+                                                 text="Bảo đảm một lớp chỉ có một thể hiện và cung cấp điểm truy cập dùng chung trong toàn hệ thống."
+                                                 wrapText="true" />
+                                       </children>
+                                    </VBox>
+
+                                    <VBox alignment="CENTER_RIGHT" spacing="8.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" spacing="6.0">
+                                             <children>
+                                                <Region fx:id="readyDot" styleClass="ready-dot" />
+                                                <Label fx:id="readyLabel" styleClass="ready-label"
+                                                       text="READY TO EXECUTE" />
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="runButton" mnemonicParsing="false"
+                                                  onAction="#handleRunTestButton"
+                                                  prefHeight="48.0" prefWidth="230.0"
+                                                  styleClass="run-button"
+                                                  text="▶   KÍCH HOẠT TEST" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="18.0" right="18.0" top="16.0" />
+                                 </padding>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="9.0"
+                                          styleClass="info-tile" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <StackPane styleClass="info-icon, info-icon-violet">
+                                             <children>
+                                                <Label fx:id="patternNumberLabel"
+                                                       styleClass="info-icon-text" text="01" />
+                                             </children>
+                                          </StackPane>
+                                          <VBox spacing="1.0">
+                                             <children>
+                                                <Label styleClass="info-label" text="PATTERN ID" />
+                                                <Label styleClass="info-value" text="GoF Catalog" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+
+                                    <HBox alignment="CENTER_LEFT" spacing="9.0"
+                                          styleClass="info-tile" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <StackPane styleClass="info-icon, info-icon-cyan">
+                                             <children>
+                                                <Label styleClass="info-icon-text" text="FM" />
+                                             </children>
+                                          </StackPane>
+                                          <VBox spacing="1.0">
+                                             <children>
+                                                <Label styleClass="info-label" text="PATTERN FAMILY" />
+                                                <Label fx:id="patternFamilyLabel" styleClass="info-value"
+                                                       text="Creational" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+
+                                    <HBox alignment="CENTER_LEFT" spacing="9.0"
+                                          styleClass="info-tile" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <StackPane styleClass="info-icon, info-icon-green">
+                                             <children>
+                                                <Label styleClass="info-icon-text" text="↗" />
+                                             </children>
+                                          </StackPane>
+                                          <VBox spacing="1.0">
+                                             <children>
+                                                <Label styleClass="info-label" text="CORE INTENT" />
+                                                <Label fx:id="patternIntentLabel" maxWidth="155.0"
+                                                       styleClass="info-value" text="Single Instance"
+                                                       textOverrun="ELLIPSIS" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <Region fx:id="workspaceModeDot" styleClass="console-dot" />
+                                    <VBox spacing="0.0">
+                                       <children>
+                                          <Label fx:id="workspaceModeTitle" styleClass="console-label"
+                                                 text="LIVE EXECUTION CONSOLE" />
+                                          <Label fx:id="workspaceModeCaption" styleClass="console-caption"
+                                                 text="Kết quả thực thi nghiệp vụ theo thời gian thực" />
+                                       </children>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+
+                                    <HBox alignment="CENTER" spacing="3.0" styleClass="view-switcher">
+                                       <children>
+                                          <ToggleButton fx:id="outputViewButton" mnemonicParsing="false"
+                                                        onAction="#showOutputView" selected="true"
+                                                        styleClass="view-switch-button" text="OUTPUT" />
+                                          <ToggleButton fx:id="structureViewButton" mnemonicParsing="false"
+                                                        onAction="#showStructureView"
+                                                        styleClass="view-switch-button" text="STRUCTURE" />
+                                       </children>
+                                    </HBox>
+
+                                    <HBox fx:id="outputActionsBox" alignment="CENTER_RIGHT" spacing="6.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCopyConsole"
+                                                  styleClass="console-clear-button" text="COPY" />
+                                          <Button mnemonicParsing="false" onAction="#handleClearConsole"
+                                                  styleClass="console-clear-button" text="CLEAR" />
+                                       </children>
+                                    </HBox>
+                                    <StackPane fx:id="statusChip" styleClass="status-chip, status-idle">
+                                       <children>
+                                          <HBox alignment="CENTER" spacing="6.0">
+                                             <children>
+                                                <Region styleClass="status-chip-dot" />
+                                                <Label fx:id="statusChipText"
+                                                       styleClass="status-chip-text" text="IDLE" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </HBox>
+
+                              <StackPane fx:id="workspaceViewHost" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <StackPane fx:id="consoleCard" styleClass="terminal-window">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="7.0"
+                                                      styleClass="terminal-titlebar">
+                                                   <children>
+                                                      <Region styleClass="traffic-dot, traffic-dot-red" />
+                                                      <Region styleClass="traffic-dot, traffic-dot-yellow" />
+                                                      <Region styleClass="traffic-dot, traffic-dot-green" />
+                                                      <Label styleClass="terminal-path"
+                                                             text="~/e-catering/pattern-lab" />
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <Label styleClass="terminal-filename" text="OUTPUT.LOG" />
+                                                      <StackPane styleClass="encoding-chip">
+                                                         <children>
+                                                            <Label styleClass="encoding-chip-text" text="UTF-8" />
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="9.0" left="13.0" right="12.0" top="9.0" />
+                                                   </padding>
+                                                </HBox>
+
+                                                <ScrollPane fx:id="consoleScrollPane" fitToWidth="true"
+                                                            hbarPolicy="NEVER" pannable="true"
+                                                            styleClass="console-scroll" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <TextFlow fx:id="consoleTextFlow"
+                                                                styleClass="console-flow" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </StackPane>
+
+                                    <StackPane fx:id="structureCard" managed="false"
+                                               styleClass="structure-card" visible="false">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="9.0"
+                                                      styleClass="structure-titlebar">
+                                                   <children>
+                                                      <StackPane styleClass="blueprint-mark">
+                                                         <children>
+                                                            <Label styleClass="blueprint-mark-text" text="◇" />
+                                                         </children>
+                                                      </StackPane>
+                                                      <VBox spacing="1.0">
+                                                         <children>
+                                                            <Label fx:id="structurePatternName"
+                                                                   styleClass="structure-title"
+                                                                   text="SINGLETON BLUEPRINT" />
+                                                            <Label styleClass="structure-subtitle"
+                                                                   text="Interactive relationship map" />
+                                                         </children>
+                                                      </VBox>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <StackPane styleClass="structure-live-chip">
+                                                         <children>
+                                                            <HBox alignment="CENTER" spacing="6.0">
+                                                               <children>
+                                                                  <Region styleClass="structure-live-dot" />
+                                                                  <Label fx:id="structureFamilyBadge"
+                                                                         styleClass="structure-live-text"
+                                                                         text="CREATIONAL" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </StackPane>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="10.0" left="14.0" right="14.0" top="10.0" />
+                                                   </padding>
+                                                </HBox>
+
+                                                <Pane fx:id="structureCanvas" minHeight="235.0"
+                                                      styleClass="structure-canvas" VBox.vgrow="ALWAYS" />
+
+                                                <HBox alignment="CENTER_LEFT" spacing="11.0"
+                                                      styleClass="structure-insight">
+                                                   <children>
+                                                      <StackPane styleClass="structure-insight-icon">
+                                                         <children>
+                                                            <Label styleClass="structure-insight-icon-text"
+                                                                   text="↳" />
+                                                         </children>
+                                                      </StackPane>
+                                                      <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                                                         <children>
+                                                            <Label styleClass="structure-insight-label"
+                                                                   text="CORE MECHANISM" />
+                                                            <Label fx:id="structureMechanismLabel"
+                                                                   maxWidth="760.0"
+                                                                   styleClass="structure-insight-value"
+                                                                   text="Client truy cập thể hiện duy nhất thông qua getInstance()."
+                                                                   wrapText="true" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="11.0" left="14.0" right="14.0" top="11.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="16.0" left="17.0" right="17.0" top="16.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+
+            <!-- Global application status -->
+            <HBox alignment="CENTER_LEFT" spacing="8.0" styleClass="footer-bar">
+               <children>
+                  <Region fx:id="footerStatusDot" styleClass="footer-status-dot" />
+                  <Label styleClass="footer-text" text="SYSTEM READY" />
+                  <Region styleClass="footer-separator" />
+                  <Label fx:id="footerLoadedLabel" styleClass="footer-text-muted"
+                         text="23 pattern implementations loaded" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label styleClass="footer-shortcut"
+                         text="CTRL+K SEARCH  •  CTRL+D BLUEPRINT  •  ENTER RUN  •  ESC CLEAR" />
+                  <Region styleClass="footer-separator" />
+                  <Label styleClass="footer-copyright"
+                         text="Trương Hoàng Vũ © 2026 • Khoa CNTT • Trường Đại học Mở TP.HCM • 2351010250" />
+                  <Label styleClass="footer-version" text="v4.0" />
+               </children>
+               <padding>
+                  <Insets bottom="8.0" left="22.0" right="22.0" top="8.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+
+      <!-- Animated overlay notification -->
+      <StackPane fx:id="toastPane" alignment="CENTER_LEFT" managed="false"
+                 maxWidth="360.0" mouseTransparent="true" styleClass="toast"
+                 visible="false" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="11.0">
+               <children>
+                  <StackPane styleClass="toast-icon-box">
+                     <children>
+                        <Label fx:id="toastIcon" styleClass="toast-icon" text="✓" />
+                     </children>
+                  </StackPane>
+                  <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="toastTitle" styleClass="toast-title"
+                               text="EXECUTION COMPLETED" />
+                        <Label fx:id="toastMessage" maxWidth="275.0"
+                               styleClass="toast-message" text="Pattern chạy thành công."
+                               wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="13.0" left="14.0" right="14.0" top="13.0" />
+         </padding>
+         <StackPane.margin>
+            <Insets right="25.0" top="20.0" />
+         </StackPane.margin>
+      </StackPane>
+   </children>
+</StackPane>

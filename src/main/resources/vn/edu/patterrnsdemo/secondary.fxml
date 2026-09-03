@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane minHeight="560.0" minWidth="760.0" prefHeight="720.0" prefWidth="1120.0"
+           styleClass="secondary-container"
+           xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="vn.edu.patterrnsdemo.SecondaryController">
+   <children>
+
+      <Region mouseTransparent="true" styleClass="ambient-orb, ambient-orb-one"
+              StackPane.alignment="TOP_LEFT">
+         <StackPane.margin>
+            <Insets left="-80.0" top="-100.0" />
+         </StackPane.margin>
+      </Region>
+
+      <Region mouseTransparent="true" styleClass="ambient-orb, ambient-orb-two"
+              StackPane.alignment="BOTTOM_RIGHT">
+         <StackPane.margin>
+            <Insets bottom="-110.0" right="-70.0" />
+         </StackPane.margin>
+      </Region>
+
+      <VBox alignment="CENTER" maxWidth="590.0" spacing="16.0" styleClass="secondary-card">
+         <children>
+            <StackPane styleClass="secondary-logo">
+               <children>
+                  <Label styleClass="secondary-logo-text" text="DP" />
+               </children>
+            </StackPane>
+
+            <Label styleClass="secondary-kicker" text="E-CATERING · PATTERN LAB" />
+            <Label styleClass="secondary-title" text="Secondary Workspace" />
+            <Label alignment="CENTER" maxWidth="455.0" styleClass="secondary-subtitle"
+                   text="Màn hình phụ của hệ thống kiểm thử Design Pattern. Giao diện đã sẵn sàng để mở rộng thêm chức năng mà vẫn đồng bộ hoàn toàn với màn hình chính."
+                   textAlignment="CENTER" wrapText="true" />
+
+            <HBox alignment="CENTER" spacing="8.0">
+               <children>
+                  <StackPane styleClass="technology-chip">
+                     <children><Label styleClass="technology-chip-text" text="JAVAFX" /></children>
+                  </StackPane>
+                  <StackPane styleClass="technology-chip">
+                     <children><Label styleClass="technology-chip-text" text="GOF 23" /></children>
+                  </StackPane>
+                  <StackPane styleClass="technology-chip">
+                     <children><Label styleClass="technology-chip-text" text="MVC" /></children>
+                  </StackPane>
+               </children>
+            </HBox>
+
+            <Region styleClass="secondary-divider" />
+
+            <Button fx:id="secondaryButton" mnemonicParsing="false" onAction="#switchToPrimary"
+                    prefHeight="49.0" prefWidth="280.0" styleClass="secondary-button"
+                    text="←   QUAY LẠI PATTERN LAB" />
+
+            <HBox alignment="CENTER" spacing="7.0">
+               <children>
+                  <Region styleClass="secondary-status-dot" />
+                  <Label styleClass="secondary-footnote" text="SYSTEM ONLINE · ALL SERVICES OPERATIONAL" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="34.0" left="42.0" right="42.0" top="34.0" />
+         </padding>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="42.0" left="42.0" right="42.0" top="42.0" />
+   </padding>
+</StackPane>

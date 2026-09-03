@@ -1,0 +1,8 @@
+.idea/
+target/
+release/
+installer/
+installer-final/
+portable/
+*.iml
+*.log
