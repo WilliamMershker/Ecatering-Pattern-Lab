@@ -12,4 +12,6 @@ Nếu project chưa chạy được, các bạn hãy kiểm tra lại Project SD
 
 Chúc các bạn sử dụng project thuận lợi. Thank you! ^^
 
+Link để tải file .exe: https://drive.google.com/drive/u/3/folders/1bY2yHmf9DvbeMkTzXILGcpWZbpST1QqT
+
 Trương Hoàng Vũ 2026.
